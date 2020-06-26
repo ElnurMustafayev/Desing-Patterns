@@ -1,5 +1,5 @@
 ﻿namespace SOLID {
-    class Solid {
+    class MyClass {
         static void Main(string[] args) {
             // 1)
             // S - R - P
