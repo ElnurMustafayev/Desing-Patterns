@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>Object_pool</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Bullet.cs~RFc683eb6.TMP" />
+  </ItemGroup>
+
+</Project>
