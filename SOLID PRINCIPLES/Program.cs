@@ -19,13 +19,26 @@ namespace SOLID_PRINCIPLES
             {
                 ToDoList todo = new ToDoList("task1", "task1", "task1");
                 // ToDoList сам сохраняет себя - это неправильно!
-                //await todo.SaveInFile("SPR.txt", false);                  // ❌
+                //await todo.SaveInFile("assets/SPR.txt", false);                   // ❌
 
                 // Теперь все объекты (в данном случае, с правильно реализованным методом ToString())
                 // могут сохраняться в файл с помощью отдельного класса-помощника
-                await Saver.SaveToStringInFile("SPR.txt", todo, false);     // ✔
+                await Saver.SaveToStringInFile("assets/SPR.txt", todo, false);      // ✔
             }
 
+
+            // Принцип открытости/закрытости
+            // Open–closed principle
+            /*
+                Хватит теребить этот бедный класс!
+                Давай писать модули!
+                
+                Использование: Архитектуру необходимо реализовать так, чтобы можно было 
+                расширять функционал класса извне, не изменяя сам класс каждый раз
+            */
+            {
+                
+            }
         }
     }
 }
