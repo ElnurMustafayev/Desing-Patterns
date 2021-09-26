@@ -5,11 +5,14 @@ using System.Threading.Tasks;
 using SPR;
 using OCP;
 using LSP;
+using ISP;
 
 namespace SOLID_PRINCIPLES
 {
     class Program
     {
+        static int CurrentSolid = 3;
+        static bool RunAll = false;
         static async Task Main(string[] args)
         {
             // Принцип единственной ответственности
@@ -20,7 +23,7 @@ namespace SOLID_PRINCIPLES
 
                 Использование: При написании clean-code, нормального production-enterprise проекта
             */
-            {
+            if(CurrentSolid == 0 || RunAll) {
                 ToDoList todo = new ToDoList("task1", "task1", "task1");
                 // ToDoList сам сохраняет себя - это неправильно!
                 await todo.SaveInFile("assets/SPR.txt", false);                     // ⛔⛔⛔
@@ -40,7 +43,7 @@ namespace SOLID_PRINCIPLES
                 Использование: Архитектуру необходимо реализовать так, чтобы можно было 
                 расширять функционал класса извне, не изменяя сам класс каждый раз
             */
-            {
+            if(CurrentSolid == 1 || RunAll) {
                 IEnumerable<Person> people = new List<Person>() {
                     new Person("Elnur", "Mustafayev", 21),
                     new Person("Ann", "Brown", 17),
@@ -70,7 +73,7 @@ namespace SOLID_PRINCIPLES
 
                 Использование: Необходимо, чтобы замещение наследников родительскими классами было безболезненным для приложения
             */
-            {
+            if(CurrentSolid == 2 || RunAll) {
                 // предположим мы проводим Unit test для некоторого количества объектов
                 List<Rectangle> rectangles = new List<Rectangle>() {
                     new Rectangle(),
@@ -91,6 +94,44 @@ namespace SOLID_PRINCIPLES
 
                 // объект Square не прошел тест, вернув совершенно другое значение, 
                 // что показывает - архитектура не удовлетворяет тредованиям принципа Лисков 
+            }
+
+            // Принцип разделения интерфейсов
+            // Interface Segregation Principle
+            /*
+                Не создавай супер интерфейсы,
+                Лучше раздели их на логические части!
+            */
+            if(CurrentSolid == 3 || RunAll) {
+                // ⛔⛔⛔
+                var birds = new IBird[] {
+                    new Swan(),
+                    new Chicken()
+                };
+                try {
+                    foreach (var bird in birds)
+                    {
+                        bird.Walk();
+                        // Программа обвалится на курице потому что она не умеет ни плавать, ни летать
+                        bird.Fly();
+                        bird.Swim();
+                    }
+                }
+                catch(Exception ex) {
+                    System.Console.WriteLine(ex.Message);
+                }
+
+                // ✅✅✅
+                var fliables = new List<IFly>() {
+                    new Parrot(),
+                };
+
+                var walkables = new List<IWalk>() {
+                    new Parrot(), new Flamingo(),
+                };
+
+                fliables.ForEach(f => f.Fly());
+                walkables.ForEach(w => w.Walk());
             }
         }
     }
