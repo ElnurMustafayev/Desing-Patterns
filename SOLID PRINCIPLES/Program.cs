@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using SPR;
 using OCP;
+using LSP;
 
 namespace SOLID_PRINCIPLES
 {
@@ -60,6 +61,36 @@ namespace SOLID_PRINCIPLES
                 var adultSpec = new PersonAdultSpecification();
                 // сделал выборку
                 var filterResult = personFilter.FilterBy(items: people, specification: idSpec + adultSpec);
+            }
+        
+            // Принцип подстановки Барбары Лисков
+            // Liskov substitution principle
+            /*
+                Поведение наследующих классов не должно противоречивать поведению заданных в базовом классе
+
+                Использование: Необходимо, чтобы замещение наследников родительскими классами было безболезненным для приложения
+            */
+            {
+                // предположим мы проводим Unit test для некоторого количества объектов
+                List<Rectangle> rectangles = new List<Rectangle>() {
+                    new Rectangle(),
+                    new Rectangle(0,0),
+                    new Square(),           // ⛔⛔⛔
+                    new Rectangle(5,10),
+                };
+
+                // задаем какие-то тестовые параметры
+                rectangles.ForEach(r => {
+                    r.Width = 5;
+                    r.Height = 10;
+                });
+
+                // и вызываем API "GetArea()" для теста
+                foreach (var rectangle in rectangles)
+                    System.Console.WriteLine($"{rectangle.GetType().Name}: {rectangle.GetArea()}");
+
+                // объект Square не прошел тест, вернув совершенно другое значение, 
+                // что показывает - архитектура не удовлетворяет тредованиям принципа Лисков 
             }
         }
     }
