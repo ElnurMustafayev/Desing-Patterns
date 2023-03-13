@@ -1,23 +1,42 @@
-﻿using System;
+﻿using Builder.Builders;
+using Builder.Models;
 
-namespace Builder {
-    class Program {
-        static void Main(string[] args) {
-            // Create Builder
-            CarBuilder carBuilder = new CarBuilder();
 
-            // Creator as variable
-            CarCreatorBase carCreator = new DaewooLanosCarCreator();
-            Car Daewoo = carBuilder.BuildCar(carCreator);
-            carCreator = new FordProbeCarCreator();
-            Car Ford = carBuilder.BuildCar(carCreator);
 
-            // Creator as parameter
-            Car Hyundai = carBuilder.BuildCar(new HyundaiGetzCarCreator());
-            Car UAZ = carBuilder.BuildCar(new UAZPatriotCarCreator());
+// ⛔️⛔️⛔️ BAD PRACTICE:
+House house = new House(
+    windowsCount: 2, 
+    doorsCount: 1, 
+    roomsCount: 1, 
+    hasGarage: false, 
+    hasSwimmingPool: false, 
+    decorations: null);
 
-            Console.WriteLine(Ford);
-            Console.WriteLine(UAZ);
-        }
-    }
-}
+
+
+// ✅✅✅ GOOD PRACTICE:
+
+// Manual with builder
+SimpleHouseBuilder builder = new SimpleHouseBuilder();
+
+builder.BuildRooms();
+builder.BuildDoors();
+builder.BuildDecorations();
+builder.BuildWindows();
+builder.SetHasGarage();
+builder.SetHasSwimmingPool();
+
+House builderResult = builder.GetResult();
+
+// with director
+HouseDirector director = new HouseDirector(new VillaBuilder());
+var directorResult = director.Make(builder => {
+    builder.BuildRooms();
+    builder.BuildDoors();
+    builder.BuildDecorations();
+    builder.BuildWindows();
+    builder.SetHasGarage();
+    builder.SetHasSwimmingPool();
+});
+
+System.Console.WriteLine(directorResult);
