@@ -4,7 +4,7 @@ using Builder.Models;
 
 
 // ⛔️⛔️⛔️ BAD PRACTICE:
-House house = new House(
+House h = new House(
     windowsCount: 2, 
     doorsCount: 1, 
     roomsCount: 1, 
@@ -30,13 +30,6 @@ House builderResult = builder.GetResult();
 
 // with director
 HouseDirector director = new HouseDirector(new VillaBuilder());
-var directorResult = director.Make(builder => {
-    builder.BuildRooms();
-    builder.BuildDoors();
-    builder.BuildDecorations();
-    builder.BuildWindows();
-    builder.SetHasGarage();
-    builder.SetHasSwimmingPool();
-});
 
-System.Console.WriteLine(directorResult);
+House house = director.BuildHouse();    // build simple house
+House facade = director.BuildFacade();  // builds facade with decoration

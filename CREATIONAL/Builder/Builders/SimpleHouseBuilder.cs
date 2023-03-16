@@ -17,6 +17,11 @@ public class SimpleHouseBuilder : IHouseBuilder {
     public void SetHasGarage() => this.house.HasGarage = false;
     public void SetHasSwimmingPool() => this.house.HasSwimmingPool = false;
     
-    public House GetResult() => this.house;
+    public House GetResult() {
+        var result = this.house;
+        this.Reset();
+
+        return result;
+    }
     public void Reset() => this.house = new House();
 }

@@ -19,6 +19,12 @@ public class VillaBuilder : IHouseBuilder {
     public void SetHasGarage() => this.house.HasGarage = true;
     public void SetHasSwimmingPool() => this.house.HasSwimmingPool = true;
     
-    public House GetResult() => this.house;
+    public House GetResult() {
+        var result = this.house;
+        this.Reset();
+
+        return result;
+    }
+
     public void Reset() => this.house = new House();
 }
