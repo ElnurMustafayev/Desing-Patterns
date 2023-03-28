@@ -1,0 +1,8 @@
+Decorator 1 start
+Slack: Elnur => 'Test message...'
+Decorator 1 end
+Decorator 2 start
+Decorator 1 start
+SMS: +123456789 => 'Hello World!'
+Decorator 1 end
+Decorator 2 end
