@@ -1,0 +1,3 @@
+Log: Translate API service translating 'Hello'... 
+'Hello' (en) => (ru) 'something'
+'Hello' (en) => (ru) 'something'

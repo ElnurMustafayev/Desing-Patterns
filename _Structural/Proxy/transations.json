@@ -1,0 +1,8 @@
+[
+    {
+        "FromText": "Hello",
+        "ToText": "something",
+        "FromLang": "en",
+        "ToLang": "ru"
+    }
+]
