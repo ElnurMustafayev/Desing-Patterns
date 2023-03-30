@@ -1,38 +1,32 @@
-﻿// Class to be adapted
-using System.Text.Json;
+﻿using Adapter.Adapters;
+using Adapter.Adapters.Base;
+using Adapter.Shapes;
 
-public class Adaptee {
-    public void SendSpecificRequest() {
-        System.Console.WriteLine("Request send");
-    }
+
+
+// ⛔️⛔️⛔️
+var line = new Line();
+var circle = new Circle();
+var rectangle = new Rectangle();
+
+var shapes = new List<object>() {
+    line, circle, rectangle,
+};
+
+foreach (var shape in shapes) {
+    // shape.Draw // ???
 }
 
-public interface IAdapter {
-    // another signature
-    public void SendRequest();
-}
 
-public class Adapter : IAdapter {
-    private readonly Adaptee adaptee;
 
-    public Adapter(Adaptee? adaptee = null) => this.adaptee = adaptee ?? new Adaptee();
+// ✅✅✅
+var adapters = new List<IShapeAdapter>() {
+    new LineAdapter(line),
+    new CircleAdapter(circle),
+    new RectangleAdapter(rectangle),
+};
 
-    // another signature
-    public void SendRequest() {
-        this.adaptee.SendSpecificRequest();
-    }
-}
-
-public class Program {
-    public static void Main() {
-        var adaptee = new Adaptee();
-
-        // ⛔️⛔️⛔️
-        adaptee.SendSpecificRequest();
-
-        // ✅✅✅
-        // sometimes is better to use an adapter
-        var adapter = new Adapter(adaptee);
-        adapter.SendRequest();
-    }
+foreach (var adapter in adapters) {
+    // have one (adapted) interface
+    adapter.Draw(0, 0, 10, 20);
 }
