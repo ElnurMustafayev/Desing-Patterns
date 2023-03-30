@@ -1,0 +1,19 @@
+Simple Pistol: 
+Damage: 20
+Accuracy: 15
+Mobility: 65
+
+Pistol with Aim: 
+Damage: 20
+Accuracy: 35
+Mobility: 62
+
+Pistol with Butt: 
+Damage: 20
+Accuracy: 45
+Mobility: 57
+
+Pistol with Silencer: 
+Damage: 15
+Accuracy: 55
+Mobility: 56
