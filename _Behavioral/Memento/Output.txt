@@ -1,0 +1,7 @@
+History of 'Name changed' document changes:
+3/31/2023 4:48:13 PM: 'Licence: MIT LICENCE Some template text here'
+3/31/2023 4:48:13 PM: 'Licence: MIT LICENCE Text changed'
+3/31/2023 4:48:13 PM: 'Licence: Title changed Text changed'
+
+Originator: Name changed: Title changed Text changed
+Originator after restore: Licence: MIT LICENCE Some template text here
