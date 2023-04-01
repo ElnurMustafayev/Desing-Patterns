@@ -1,35 +1,23 @@
 ﻿using Builder.Builders;
+using Builder.Directors;
+using Builder.Directors.Base;
 using Builder.Models;
 
 
 
-// ⛔️⛔️⛔️ BAD PRACTICE:
-House h = new House(
-    windowsCount: 2, 
-    doorsCount: 1, 
-    roomsCount: 1, 
-    hasGarage: false, 
-    hasSwimmingPool: false, 
-    decorations: null);
+HouseBuilder builder = new HouseBuilder();
 
+var simpleHouse = builder.BuildWindows(4)
+    .BuildDoors(2)
+    .BuildWalls(8)
+    .BuildGarage()
+    .Build();
 
+var houseWithRoof = builder
+    .BuildRoof()
+    .PlantDecoration(new Decoration("Tree"))
+    .Build();
 
-// ✅✅✅ GOOD PRACTICE:
-
-// Manual with builder
-SimpleHouseBuilder builder = new SimpleHouseBuilder();
-
-builder.BuildRooms();
-builder.BuildDoors();
-builder.BuildDecorations();
-builder.BuildWindows();
-builder.SetHasGarage();
-builder.SetHasSwimmingPool();
-
-House builderResult = builder.GetResult();
-
-// with director
-HouseDirector director = new HouseDirector(new VillaBuilder());
-
-House house = director.BuildHouse();    // build simple house
-House facade = director.BuildFacade();  // builds facade with decoration
+IHouseDirector director = new HouseDirector(builder);
+var house = director.MakeSimpleHouse();
+Console.WriteLine(house);

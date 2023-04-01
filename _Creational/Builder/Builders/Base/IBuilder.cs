@@ -1,6 +1,6 @@
 namespace Builder.Builders.Base;
 
 public interface IBuilder<IEntity> {
-    IEntity GetResult();
+    IEntity Build();
     void Reset();
 }
