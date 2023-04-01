@@ -1,11 +1,12 @@
 namespace Builder.Directors;
 
 using Builder.Builders;
+using Builder.Builders.Base;
 using Builder.Directors.Base;
 using Builder.Models;
 
 public class HouseDirector : IHouseDirector {
-    public HouseBuilder Builder { private get; set; }
+    public IHouseBuilder Builder { private get; set; }
 
     public HouseDirector(HouseBuilder builder) => Builder = builder;
 

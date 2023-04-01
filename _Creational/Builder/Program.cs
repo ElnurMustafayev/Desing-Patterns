@@ -14,10 +14,14 @@ var simpleHouse = builder.BuildWindows(4)
     .Build();
 
 var houseWithRoof = builder
+    .BuildDoors(3)
+    .BuildWalls(12)
+    .BuildGarage()
+    .BuildSwimmingPool()
     .BuildRoof()
+    .PlantDecoration(new Decoration("Tree"))
     .PlantDecoration(new Decoration("Tree"))
     .Build();
 
 IHouseDirector director = new HouseDirector(builder);
 var house = director.MakeSimpleHouse();
-Console.WriteLine(house);

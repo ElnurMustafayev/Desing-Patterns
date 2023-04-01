@@ -3,7 +3,7 @@ namespace Builder.Builders;
 using Builder.Builders.Base;
 using Builder.Models;
 
-public class HouseBuilder : IBuilder<House> {
+public class HouseBuilder : IHouseBuilder {
     protected House house;
 
     public HouseBuilder() {
