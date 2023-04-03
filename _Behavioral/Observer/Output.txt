@@ -1,0 +1,6 @@
+Bob Marley received notification: Title was changed: [] => [Something]
+Ann Brown received notification: Title was changed: [] => [Something]
+John Black received notification: Title was changed: [] => [Something]
+Bob Marley received notification: State was changed: [backlog] => [doing]
+Ann Brown received notification: State was changed: [backlog] => [doing]
+John Black received notification: State was changed: [backlog] => [doing]
